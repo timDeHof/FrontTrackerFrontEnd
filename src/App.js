@@ -1,7 +1,12 @@
-import React from 'react'
-
+import React from "react";
+import Login from "./components/Login";
 function App() {
-  return <div>Welcome to Fitness Tracker</div>
+  return (
+    <div className="web-page">
+      <h1>Welcome to Fitness Tracker</h1>
+      <Login />
+    </div>
+  );
 }
 
-export default App
+export default App;
