@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { registerUser } from "../api";
+import { registerUser } from "../api/user";
 
 function SignUp({ setToken }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <div className="signUp">
@@ -44,6 +43,7 @@ function SignUp({ setToken }) {
 }
 
 export default SignUp;
+
 // personal stretch goal
-//  password compar
-// if statement comparing password with confirm password
+//  password comparison
+//    if statement comparing password with confirm password

@@ -30,7 +30,7 @@ function Main() {
       <Navbar />
       <Switch>
         <Route path="/login">
-          <Login />
+          <Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/routines">
           <Routines />
