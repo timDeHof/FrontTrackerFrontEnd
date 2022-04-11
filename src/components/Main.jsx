@@ -5,7 +5,26 @@ import MyRoutines from "./MyRoutines";
 import Navbar from "./Navbar";
 import Routines from "./Routines";
 import SignUp from "./SignUp";
+
 function Main() {
+  const [userObj, setUserObj] = useState({});
+  const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    let localStorageToken = localStorage.getItem("token");
+
+    if (localStorageToken) {
+      setToken(localStorageToken);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <div className="web-page">
       <Navbar />
@@ -17,7 +36,7 @@ function Main() {
           <Routines />
         </Route>
         <Route path="/Signup">
-          <SignUp />
+          <SignUp setToken={setToken} />
         </Route>
         <Route path="/MyRoutines">
           <MyRoutines />
