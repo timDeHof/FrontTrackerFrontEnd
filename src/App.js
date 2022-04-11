@@ -1,10 +1,11 @@
 import React from "react";
-import Login from "./components/Login";
+import Main from "./components/Main";
+
 function App() {
   return (
     <div className="web-page">
       <h1>Welcome to Fitness Tracker</h1>
-      <Login />
+      <Main />
     </div>
   );
 }
