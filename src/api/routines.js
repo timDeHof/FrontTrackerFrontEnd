@@ -6,8 +6,9 @@ export const getRoutines = async () => {
   try {
     const response = await fetch(`${URL}/routines`);
     const result = await response.json();
+    //console.log("result:", result);
     if (result.error) throw result.error;
-    return result.routines;
+    return result;
   } catch (err) {
     console.error("uh oh, trouble fetching routines!", err);
   }
