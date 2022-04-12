@@ -34,7 +34,12 @@ function Main() {
           element={<Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />}
         />
 
-        <Route path="/routines" element={<Routines />} />
+        <Route
+          path="/routines"
+          element={
+            <Routines userObj={userObj} token={token} isLoggedIn={isLoggedIn} />
+          }
+        />
 
         <Route path="/Signup" element={<SignUp setToken={setToken} />} />
 
