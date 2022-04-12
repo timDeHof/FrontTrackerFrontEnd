@@ -16,23 +16,3 @@ function Navbar(props) {
 }
 
 export default Navbar;
-
-{
-  /* <ul className="navlist">
-  <li className="link">
-    <Link to="/">Home</Link>
-  </li>
-  <li className="link">
-    <Link to="/Routines">Routines</Link>
-  </li>
-  <li className="link">
-    <Link to="/Login">Log In</Link>
-  </li>
-  <li className="link">
-    <Link to="/Signup">Signup</Link>
-  </li>
-  <li className="link">
-    <Link to="/MyRoutines"> My Routines </Link>
-  </li>
-</ul> */
-}

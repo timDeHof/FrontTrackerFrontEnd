@@ -33,16 +33,13 @@ function Main() {
           path="/login"
           element={<Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />}
         />
-
         <Route
           path="/routines"
           element={
             <Routines userObj={userObj} token={token} isLoggedIn={isLoggedIn} />
           }
         />
-
         <Route path="/Signup" element={<SignUp setToken={setToken} />} />
-
         <Route path="/MyRoutines" element={<MyRoutines />} />
       </Routes>
     </div>
