@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+import { getRoutines } from "../api/routines";
+
+const routinesList = { token };
 function Routines(props) {
   return (
     <div>
