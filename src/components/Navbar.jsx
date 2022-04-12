@@ -10,6 +10,7 @@ function Navbar(props) {
         <Link to="/Login">Log In</Link>
         <Link to="/Sign up">Sign up</Link>
         <Link to="/MyRoutines"> My Routines </Link>
+        <Link to="/Activities">My Activities</Link>
       </nav>
     </div>
   );

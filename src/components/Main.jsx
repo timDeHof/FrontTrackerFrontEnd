@@ -5,6 +5,7 @@ import MyRoutines from "./MyRoutines";
 import Navbar from "./Navbar";
 import Routines from "./Routines";
 import SignUp from "./SignUp";
+import Activities from "./Activities";
 
 function Main() {
   const [userObj, setUserObj] = useState({});
@@ -33,9 +34,10 @@ function Main() {
           path="/login"
           element={<Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />}
         />
-        <Route path="/routines" element={<Routines />} />
+        <Route path="/Routines" element={<Routines />} />
         <Route path="/Signup" element={<SignUp setToken={setToken} />} />
         <Route path="/MyRoutines" element={<MyRoutines />} />
+        <Route path="/Activities" element={<Activities />} />
       </Routes>
     </div>
   );

@@ -6,3 +6,4 @@ export { default as MyRoutines } from "./MyRoutines";
 export { default as Navbar } from "./Navbar";
 export { default as Routines } from "./Routines";
 export { default as SignUp } from "./SignUp";
+export { default as Activities } from "./Activities";
