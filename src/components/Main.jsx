@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import MyRoutines from "./MyRoutines";
 import Navbar from "./Navbar";
@@ -28,20 +28,18 @@ function Main() {
   return (
     <div className="web-page">
       <Navbar />
-      <Switch>
-        <Route path="/login">
-          <Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />
-        </Route>
-        <Route path="/routines">
-          <Routines />
-        </Route>
-        <Route path="/Signup">
-          <SignUp setToken={setToken} />
-        </Route>
-        <Route path="/MyRoutines">
-          <MyRoutines />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route
+          path="/login"
+          element={<Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />}
+        />
+
+        <Route path="/routines" element={<Routines />} />
+
+        <Route path="/Signup" element={<SignUp setToken={setToken} />} />
+
+        <Route path="/MyRoutines" element={<MyRoutines />} />
+      </Routes>
     </div>
   );
 }
