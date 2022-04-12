@@ -23,7 +23,7 @@ function Main() {
     if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
     }
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <div className="web-page">
