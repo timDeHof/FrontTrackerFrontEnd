@@ -5,21 +5,19 @@ import MyRoutines from "./MyRoutines";
 import Navbar from "./Navbar";
 import Routines from "./Routines";
 import SignUp from "./SignUp";
-//import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
 
 function Main() {
-  //const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
-  //const [userObj, setUserObj] = useState({});
-  //const [token, setToken] = useState("");
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
 
-  // useEffect(() => {
-  //   let localStorageToken = localStorage.getItem("token");
+  useEffect(() => {
+    let localStorageToken = localStorage.getItem("token");
 
-  //   if (localStorageToken) {
-  //     setToken(localStorageToken);
-  //   }
-  // }, [token]);
+    if (localStorageToken) {
+      setToken(localStorageToken);
+    }
+  }, [token]);
 
   // useEffect(() => {
   //   if (localStorage.getItem("token")) {
