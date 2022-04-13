@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import MyRoutines from "./MyRoutines";
 import Navbar from "./Navbar";
 import Routines from "./Routines";
 import SignUp from "./SignUp";
-import Activities from "./Activities";
+
+import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
 
 function Main() {
-  const [userObj, setUserObj] = useState({});
-  const [token, setToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
 
   useEffect(() => {
     let localStorageToken = localStorage.getItem("token");
@@ -20,16 +21,17 @@ function Main() {
     }
   }, [token]);
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, [isLoggedIn]);
 
   return (
     <div className="web-page">
       <Navbar />
       <Routes>
+
         <Route
           path="/login"
           element={<Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />}
@@ -38,6 +40,7 @@ function Main() {
         <Route path="/Signup" element={<SignUp setToken={setToken} />} />
         <Route path="/MyRoutines" element={<MyRoutines />} />
         <Route path="/Activities" element={<Activities />} />
+
       </Routes>
     </div>
   );
