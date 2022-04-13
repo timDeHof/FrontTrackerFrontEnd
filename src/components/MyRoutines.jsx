@@ -37,7 +37,11 @@ const CreatingRoutines = () => {
     </div>
   );
 };
-
+// get Routines again and filter by comparing user.username to creator name
+// to only show the user's routines
+const getFilteredRoutines = () => {
+  return;
+};
 const MyRoutines = ({ post, setPost }) => {
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
@@ -47,6 +51,7 @@ const MyRoutines = ({ post, setPost }) => {
     <div>
       <h1> My Routines</h1>
       <CreatingRoutines />
+      <getFilteredRoutines />
     </div>
   );
 };
