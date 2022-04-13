@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { loginUser } from "../api/user";
-function Login({ setToken }, { setIsLoggedIn }) {
+import useAuth from "../hooks/useAuth";
+
+function Login() {
+  const { setToken, setUser, setIsLoggedIn } = useAuth();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,6 +25,7 @@ function Login({ setToken }, { setIsLoggedIn }) {
 
           setUserName("");
           setPassword("");
+          setIsLoggedIn(true);
         }}
       >
         <input
@@ -46,6 +50,16 @@ function Login({ setToken }, { setIsLoggedIn }) {
         />
         <button type="submit">Log in</button>
       </form>
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          setToken(null);
+          setUser({});
+          setIsLoggedIn(false);
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 }
