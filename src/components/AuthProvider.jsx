@@ -4,18 +4,15 @@ import { fetchUser } from "../api/user";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [routines, setRoutines] = useState("");
 
   useEffect(() => {
     async function getUser() {
       if (localStorage.getItem("token")) {
         const newUser = await fetchUser(token);
         //console.log("newUser:", newUser);
-        setToken(token);
+        //setToken(token);
         setUser(newUser);
         setIsLoggedIn(true);
       }
@@ -32,12 +29,6 @@ const AuthProvider = ({ children }) => {
         setToken,
         isLoggedIn,
         setIsLoggedIn,
-        title,
-        setTitle,
-        description,
-        setDescription,
-        routines,
-        setRoutines,
       }}
     >
       {children}

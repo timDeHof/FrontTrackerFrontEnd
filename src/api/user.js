@@ -36,7 +36,7 @@ export const loginUser = async (username, password) => {
 };
 
 export const fetchUser = async (token) => {
-  console.log("token:", token);
+  console.log("token in fetchUser:", token);
   const response = await fetch(`${URL}/users/me`, {
     method: "GET",
     headers: {
@@ -44,6 +44,12 @@ export const fetchUser = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  // .then((response) => response.json())
+  // .then((result) => {
+  //   console.log(result);
+  // })
+  // .catch(console.error);
+  console.log("response:", response);
   const data = await response.json();
   return data;
 };

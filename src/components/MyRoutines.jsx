@@ -3,14 +3,14 @@ import { createRoutines } from "../api/myRoutines";
 import useAuth from "../hooks/useAuth";
 
 const CreatingRoutines = () => {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [title, setTitle] = useState("");
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const routineObj = { title, goal };
+    const routineObj = { name: title, goal };
     console.log(routineObj, "Making sure that the routineObj is connected");
     const response = await createRoutines(routineObj, token);
     console.log(response, "Getting response?");
@@ -39,9 +39,9 @@ const CreatingRoutines = () => {
 };
 
 const MyRoutines = ({ post, setPost }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [routines, setRoutines] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  //const [routines, setRoutines] = useState("");
 
   return (
     <div>
