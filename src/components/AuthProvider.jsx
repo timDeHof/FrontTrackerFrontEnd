@@ -6,6 +6,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [routines, setRoutines] = useState("");
 
   useEffect(() => {
     async function getUser() {
@@ -22,7 +25,20 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, token, setToken, isLoggedIn, setIsLoggedIn }}
+      value={{
+        user,
+        setUser,
+        token,
+        setToken,
+        isLoggedIn,
+        setIsLoggedIn,
+        title,
+        setTitle,
+        description,
+        setDescription,
+        routines,
+        setRoutines,
+      }}
     >
       {children}
     </AuthContext.Provider>
