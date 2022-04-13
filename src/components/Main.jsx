@@ -1,10 +1,12 @@
 import React from "react";
+
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import MyRoutines from "./MyRoutines";
 import Navbar from "./Navbar";
 import Routines from "./Routines";
 import SignUp from "./SignUp";
+
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
 
@@ -29,10 +31,16 @@ function Main() {
     <div className="web-page">
       <Navbar />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/routines" element={<Routines />} />
-        <Route path="/Signup" element={<SignUp />} />
+
+        <Route
+          path="/login"
+          element={<Login setToken={setToken} setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route path="/Routines" element={<Routines />} />
+        <Route path="/Signup" element={<SignUp setToken={setToken} />} />
         <Route path="/MyRoutines" element={<MyRoutines />} />
+        <Route path="/Activities" element={<Activities />} />
+
       </Routes>
     </div>
   );
