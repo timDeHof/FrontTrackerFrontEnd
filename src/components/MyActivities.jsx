@@ -50,4 +50,5 @@ const MyActivity = ({ props, setProps }) => {
   );
 };
 // make sure to connect the activities
+//testing out the branch
 export default MyActivity;
