@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Activities from "./Activities";
-import MyActivity from "./MyActivities";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import MyRoutines from "./MyRoutines";
@@ -26,8 +25,7 @@ function Main() {
         <Route path="/Routines" element={<Routines />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/MyRoutines" element={<MyRoutines />} />
-        <Route path="/Activities" element={<Activities />} />
-        <Route path="/MyActivity" element={<MyActivity />} />
+        <Route path="/activities" element={<Activities />} />
       </Routes>
     </div>
   );

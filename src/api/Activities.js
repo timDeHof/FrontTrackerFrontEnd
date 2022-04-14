@@ -4,7 +4,7 @@ const URL = BASE_URL + "/api";
 
 export const getActivities = async () => {
   try {
-    const response = await fetch(`${URL}/Activities}`);
+    const response = await fetch(`${URL}/activities`);
     const result = await response.json();
     if (result.error) throw result.error;
     return result;

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { getActivities } from "../api/Activities";
+import CreatingActivities from "./CreatingActivities";
+import useAuth from "../hooks/useAuth";
 
 function Activities(userObj, token) {
   const [activities, setActivities] = useState([]);
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     const getAllActivities = async () => {
       const response = await getActivities();
+      console.log(response, "Awaiting the response or not");
       setActivities(response);
     };
     getAllActivities();
@@ -15,35 +19,19 @@ function Activities(userObj, token) {
   return (
     <div className="activity">
       <h1>This is Activities page</h1>
+      {isLoggedIn ? <CreatingActivities /> : null}
+
       {activities && activities.length
         ? activities.map((activity, id) => {
             return (
               <div className="activityList" key={`activity${id}`}>
+                <h1>Activity {id + 1}</h1>
                 <ul>
-                  <li>
-                    <h2>Creator Name: {activity.creatorName}</h2>
-                  </li>
                   <li>
                     <p>Name: {activity.name}</p>
                   </li>
                   <li>
-                    <p>Goal: {activity.goal}</p>
-                  </li>
-                  <li>
-                    <p>Activities: </p>
-                    <ul>
-                      {activity.activities.length
-                        ? activity.activities.map((routine, i) => {
-                            return (
-                              <div key={`routine${i}}`}>
-                                <li>Activity Name: {routine.name}</li>
-                                <li>Count:{routine.count}</li>
-                                <li>Duration:{routine.duration}</li>
-                              </div>
-                            );
-                          })
-                        : null}
-                    </ul>
+                    <p> Description: {activity.description}</p>
                   </li>
                 </ul>
               </div>

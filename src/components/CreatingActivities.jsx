@@ -37,18 +37,4 @@ const CreatingActivities = () => {
   );
 };
 
-const MyActivity = ({ props, setProps }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [activities, setActivities] = useState("");
-
-  return (
-    <div>
-      <h1> My Activities</h1>
-      <CreatingActivities />
-    </div>
-  );
-};
-// make sure to connect the activities
-//testing out the branch
-export default MyActivity;
+export default CreatingActivities;
