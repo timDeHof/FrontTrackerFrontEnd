@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createRoutines } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 function CreatingRoutines({ userRoutines, setUserRoutines }) {
+  console.log("userRoutines in CreatingRoutines:", userRoutines);
   const { token, user } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
@@ -13,7 +14,11 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
     console.log("response in creatingRoutine:", response);
     const newUserRoutine = response;
     console.log("newRoutine:", newUserRoutine);
-    setUserRoutines([newUserRoutine, ...userRoutines]);
+    let newUserRoutineList = [...userRoutines, newUserRoutine];
+    console.log("new userRoutines list:", newUserRoutineList);
+    setUserRoutines(newUserRoutineList);
+    setName("");
+    setGoal("");
   };
 
   return (

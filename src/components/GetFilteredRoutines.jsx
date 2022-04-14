@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
-const GetFilteredRoutines = () => {
-  const [userRoutines, setUserRoutines] = useState([]);
+const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
+  //const [userRoutines, setUserRoutines] = useState([]);
+  console.log("userRoutines in GetFilteredRoutines:", userRoutines);
   const { user } = useAuth();
   //console.log("user:", user.username);
   useEffect(
@@ -34,7 +35,7 @@ const GetFilteredRoutines = () => {
                   <li>
                     <p>Activities: </p>
                     <ul>
-                      {userRoutine.activities.length
+                      {userRoutine.activities && userRoutine.activities.length
                         ? userRoutine.activities.map((activity, i) => {
                             return (
                               <div key={`activity${i}`}>

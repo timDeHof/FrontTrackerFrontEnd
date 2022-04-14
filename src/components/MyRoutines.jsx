@@ -18,6 +18,7 @@ import GetFilteredRoutines from "./GetFilteredRoutines";
 
 const MyRoutines = () => {
   const [userRoutines, setUserRoutines] = useState([]);
+  console.log("userRoutines in MyRoutines:", userRoutines);
   return (
     <div>
       <h1> My Routines</h1>
@@ -25,7 +26,10 @@ const MyRoutines = () => {
         userRoutines={userRoutines}
         setUserRoutines={setUserRoutines}
       />
-      <GetFilteredRoutines userRoutines={userRoutines} />
+      <GetFilteredRoutines
+        userRoutines={userRoutines}
+        setUserRoutines={setUserRoutines}
+      />
     </div>
   );
 };
