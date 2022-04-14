@@ -36,7 +36,6 @@ export const loginUser = async (username, password) => {
 };
 
 export const fetchUser = async (token) => {
-  console.log("token:", token);
   const response = await fetch(`${URL}/users/me`, {
     method: "GET",
     headers: {

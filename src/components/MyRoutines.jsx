@@ -1,52 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { createRoutines } from "../api/myRoutines";
-import useAuth from "../hooks/useAuth";
+import React, { useState } from "react";
+import CreatingRoutines from "./CreatingRoutines";
+import GetFilteredRoutines from "./GetFilteredRoutines";
 
-const CreatingRoutines = () => {
-  const { token } = useAuth();
-  const [title, setTitle] = useState("");
-  const [goal, setGoal] = useState("");
-  const [routines, setRoutines] = useState("");
+/**
+ *   As a registered user on the My Routines tab, I want to:
+ *     [x] - be shown a form to create a new routine
+ *           -- the form should have text fields for name and goal
+ *         - for each routine which is owned by me I should
+ *              [] - be able to update the name and goal for the routine
+ *              [] - be able to delete the entire routine
+ *              [] - be able to add an activity to a routine via a small form which has
+ *                  a dropdown for all activities, an inputs for count and duration
+ *              [] - be able to update the duration or count of any activity
+ *                   on the routine
+ *              [] - be able to remove any activity from the routine
+ */
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const routineObj = { title, goal };
-    console.log(routineObj, "Making sure that the routineObj is connected");
-    const response = await createRoutines(routineObj, token);
-    console.log(response, "Getting response?");
-    const newRoutine = response.data;
-  };
-
-  return (
-    <div className="newRoutines">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="title"
-        />
-        <input
-          type="text"
-          value={goal}
-          onChange={(e) => setGoal(e.target.value)}
-          placeholder="Goal"
-        />
-        <button type="submit">Create Routines</button>
-      </form>
-    </div>
-  );
-};
-
-const MyRoutines = ({ props, setProps }) => {
-  const [title, setTitle] = useState("");
-  const [goal, setGoal] = useState("");
-  const [routines, setRoutines] = useState("");
-
+const MyRoutines = () => {
+  const [userRoutines, setUserRoutines] = useState([]);
+  console.log("userRoutines in MyRoutines:", userRoutines);
   return (
     <div>
       <h1> My Routines</h1>
-      <CreatingRoutines />
+      <CreatingRoutines
+        userRoutines={userRoutines}
+        setUserRoutines={setUserRoutines}
+      />
+      <GetFilteredRoutines
+        userRoutines={userRoutines}
+        setUserRoutines={setUserRoutines}
+      />
     </div>
   );
 };
