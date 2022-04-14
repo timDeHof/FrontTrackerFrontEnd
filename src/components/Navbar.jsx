@@ -12,12 +12,12 @@ function Navbar() {
     <div className="navbar">
       <nav>
         <h1>Welcome, {user.username} !</h1>
-        <Link to="/">Home</Link>
-        <Link to="/routines">Routines</Link>
-        <Link to="/Login">Log In</Link>
-        <Link to="/Signup">Signup</Link>
-        <Link to="/MyRoutines"> My Routines </Link>
-        <Link to="/Activities">Activities</Link>
+        <Link to="/">Home </Link>
+        <Link to="/routines">Routines </Link>
+        <Link to="/Login">Log In </Link>
+        <Link to="/Signup">Signup </Link>
+        <Link to="/MyRoutines">My Routines </Link>
+        <Link to="/Activities">The Activities</Link>
       </nav>
     </div>
   );
