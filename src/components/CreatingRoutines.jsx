@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { createRoutines } from "../api/myRoutines";
 import useAuth from "../hooks/useAuth";
-function CreatingRoutines() {
+function CreatingRoutines({ routines, setRoutines }) {
   const { token, user } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
-  const [routines, setRoutines] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+    //console.log("user:", user);
     const routineObj = { name, goal };
-    console.log(routineObj, "Making sure that the routineObj is connected");
+    //console.log(routineObj, "Making sure that the routineObj is connected");
     const response = await createRoutines(routineObj, token);
-    console.log(response, "Getting response?");
+    //console.log(response, "Getting response?");
     const newRoutine = response.data;
+    //setRoutines([newRoutine, ...routines]);
   };
 
   return (
@@ -21,17 +22,17 @@ function CreatingRoutines() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          placeholder="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="title"
+          onChange={(ev) => setName(ev.target.value)}
         />
         <input
           type="text"
-          value={goal}
-          onChange={(e) => setGoal(e.target.value)}
           placeholder="Goal"
+          value={goal}
+          onChange={(ev) => setGoal(ev.target.value)}
         />
-        <button type="submit">Create Routines</button>
+        <button type="submit">Create Routine</button>
       </form>
     </div>
   );
