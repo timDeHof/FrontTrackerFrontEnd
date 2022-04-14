@@ -49,5 +49,5 @@ const MyActivity = ({ props, setProps }) => {
     </div>
   );
 };
-
+// make sure to connect the activities
 export default MyActivity;
