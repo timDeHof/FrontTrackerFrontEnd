@@ -15,10 +15,16 @@ const useAuth = () => {
     setIsLoggedIn,
     title,
     setTitle,
-    description,
-    setDescription,
+    goal,
+    setGoal,
     routines,
     setRoutines,
+    name,
+    setName,
+    description,
+    setDescription,
+    activity,
+    setActivity,
   } = useContext(AuthContext);
   console.log("user in USEAUTH:", user);
   console.log("token in USEAUTH:", token);
@@ -32,10 +38,16 @@ const useAuth = () => {
     setIsLoggedIn,
     title,
     setTitle,
-    description,
-    setDescription,
+    goal,
+    setGoal,
     routines,
     setRoutines,
+    name,
+    setName,
+    description,
+    setDescription,
+    activity,
+    setActivity,
   };
 };
 

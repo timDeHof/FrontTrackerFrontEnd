@@ -38,9 +38,9 @@ const CreatingRoutines = () => {
   );
 };
 
-const MyRoutines = ({ post, setPost }) => {
+const MyRoutines = ({ props, setProps }) => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState("");
 
   return (
@@ -52,5 +52,3 @@ const MyRoutines = ({ post, setPost }) => {
 };
 
 export default MyRoutines;
-
-// look at the create post file in strangerthings for reference

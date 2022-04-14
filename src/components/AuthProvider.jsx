@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [routines, setRoutines] = useState("");
+  const [activities, setActivities] = useState("");
 
   useEffect(() => {
     async function getUser() {
@@ -38,6 +39,8 @@ const AuthProvider = ({ children }) => {
         setDescription,
         routines,
         setRoutines,
+        activities,
+        setActivities,
       }}
     >
       {children}
