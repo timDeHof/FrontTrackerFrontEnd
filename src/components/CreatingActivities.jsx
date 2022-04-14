@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { createActivities } from "../api/MyActivities";
 import useAuth from "../hooks/useAuth";
 
-const CreatingActivities = () => {
+const CreatingActivities = ({ activities, setActivities }) => {
   const { token } = useAuth();
-  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [activities, setActivities] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const activityObj = { name, description };
     const response = await createActivities(activityObj, token);
-    const newActivity = response.data;
+    console.log(response);
+    const newActivity = response;
+    setActivities([newActivity, ...activities]);
+    setName("");
+    setDescription("");
   };
 
   return (

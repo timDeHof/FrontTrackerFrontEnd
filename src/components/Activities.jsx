@@ -19,7 +19,12 @@ function Activities(userObj, token) {
   return (
     <div className="activity">
       <h1>This is Activities page</h1>
-      {isLoggedIn ? <CreatingActivities /> : null}
+      {isLoggedIn ? (
+        <CreatingActivities
+          activities={activities}
+          setActivities={setActivities}
+        />
+      ) : null}
 
       {activities && activities.length
         ? activities.map((activity, id) => {
