@@ -10,20 +10,12 @@ import useAuth from "../hooks/useAuth";
 
 function Main() {
   const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
-
   useEffect(() => {
     let localStorageToken = localStorage.getItem("token");
-
     if (localStorageToken) {
       setToken(localStorageToken);
     }
   }, [token]);
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, [isLoggedIn]);
 
   return (
     <div className="web-page">
@@ -33,7 +25,7 @@ function Main() {
         <Route path="/Routines" element={<Routines />} />
         <Route path="/Signup" element={<SignUp />} />
         <Route path="/MyRoutines" element={<MyRoutines />} />
-        <Route path="/Activities" element={<Activities />} />
+        <Route path="/activities" element={<Activities />} />
       </Routes>
     </div>
   );

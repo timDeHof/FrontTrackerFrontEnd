@@ -1,3 +1,5 @@
+
+
 import React, { useState } from "react";
 /**
  * GOALS:
@@ -20,13 +22,36 @@ function Activities(props) {
    */
   const authenticated = localStorage.getItem("token") ? true : false;
 
+
   return (
-    <div>
+    <div className="activity">
       <h1>This is Activities page</h1>
+      {isLoggedIn ? (
+        <CreatingActivities
+          activities={activities}
+          setActivities={setActivities}
+        />
+      ) : null}
+
+      {activities && activities.length
+        ? activities.map((activity, id) => {
+            return (
+              <div className="activityList" key={`activity${id}`}>
+                <h1>Activity {id + 1}</h1>
+                <ul>
+                  <li>
+                    <p>Name: {activity.name}</p>
+                  </li>
+                  <li>
+                    <p> Description: {activity.description}</p>
+                  </li>
+                </ul>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 }
 
 export default Activities;
-
-//look at the create post file in strangerthings for reference

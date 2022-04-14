@@ -35,5 +35,3 @@ const MyRoutines = () => {
 };
 
 export default MyRoutines;
-
-// look at the create post file in strangerthings for reference
