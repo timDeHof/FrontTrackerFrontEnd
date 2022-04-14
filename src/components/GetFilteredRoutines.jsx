@@ -8,9 +8,10 @@ const GetFilteredRoutines = () => {
   useEffect(
     (username) => {
       const getAllPublicRoutinesByUser = async () => {
-        const response = await getPublicRoutinesByUser(user.username);
-
-        setUserRoutines(response);
+        if (user.username) {
+          const response = await getPublicRoutinesByUser(user.username);
+          setUserRoutines(response);
+        }
       };
       getAllPublicRoutinesByUser();
     },

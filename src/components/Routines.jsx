@@ -23,7 +23,7 @@ function Routines({ userObj, token }) {
   return (
     <div className="routines">
       <h1>This is Routines page</h1>
-      <CreatingRoutines routines={routines} setRoutines={setRoutines} />
+      {/* <CreatingRoutines routines={routines} setRoutines={setRoutines} /> */}
       {routines && routines.length
         ? routines.map((routine, id) => {
             //console.log("routine:", routine);

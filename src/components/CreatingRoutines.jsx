@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { createRoutines } from "../api/routines";
 import useAuth from "../hooks/useAuth";
-function CreatingRoutines({ routines, setRoutines }) {
+function CreatingRoutines({ userRoutines, setUserRoutines }) {
   const { token, user } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    //console.log("user:", user);
     const routineObj = { name, goal };
-    //console.log(routineObj, "Making sure that the routineObj is connected");
     const response = await createRoutines(routineObj, token);
-    //console.log(response, "Getting response?");
-    const newRoutine = response.data;
-    setRoutines([newRoutine, ...routines]);
+    console.log("response in creatingRoutine:", response);
+    const newUserRoutine = response;
+    console.log("newRoutine:", newUserRoutine);
+    setUserRoutines([newUserRoutine, ...userRoutines]);
   };
 
   return (

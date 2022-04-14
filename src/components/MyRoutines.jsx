@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CreatingRoutines from "./CreatingRoutines";
 import GetFilteredRoutines from "./GetFilteredRoutines";
-import useAuth from "../hooks/useAuth";
-import { getPublicRoutinesByUser } from "../api/routines";
+
 /**
  *   As a registered user on the My Routines tab, I want to:
  *     [x] - be shown a form to create a new routine
@@ -17,12 +16,16 @@ import { getPublicRoutinesByUser } from "../api/routines";
  *              [] - be able to remove any activity from the routine
  */
 
-const MyRoutines = ({ post, setPost }) => {
+const MyRoutines = () => {
+  const [userRoutines, setUserRoutines] = useState([]);
   return (
     <div>
       <h1> My Routines</h1>
-      <CreatingRoutines />
-      <GetFilteredRoutines />
+      <CreatingRoutines
+        userRoutines={userRoutines}
+        setUserRoutines={setUserRoutines}
+      />
+      <GetFilteredRoutines userRoutines={userRoutines} />
     </div>
   );
 };
