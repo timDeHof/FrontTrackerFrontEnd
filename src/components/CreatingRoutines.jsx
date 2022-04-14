@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createRoutines } from "../api/myRoutines";
+import { createRoutines } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 function CreatingRoutines({ routines, setRoutines }) {
   const { token, user } = useAuth();
@@ -14,7 +14,7 @@ function CreatingRoutines({ routines, setRoutines }) {
     const response = await createRoutines(routineObj, token);
     //console.log(response, "Getting response?");
     const newRoutine = response.data;
-    //setRoutines([newRoutine, ...routines]);
+    setRoutines([newRoutine, ...routines]);
   };
 
   return (

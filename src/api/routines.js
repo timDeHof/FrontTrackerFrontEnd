@@ -24,6 +24,19 @@ export const getPublicRoutinesByUser = async (username) => {
     console.error("uh oh, trouble fetching user's routines!", error);
   }
 };
+export const createRoutines = async (routineDetails, token) => {
+  console.log(routineDetails);
+  const response = await fetch(`${URL}/routines`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(routineDetails),
+  });
+  const data = await response.json();
+  return data;
+};
 
 export const updateRoutine = async (updatedRoutineDetails, routineId) => {
   try {
