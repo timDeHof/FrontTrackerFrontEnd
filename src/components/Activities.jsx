@@ -10,7 +10,7 @@ function Activities() {
   useEffect(() => {
     const getAllActivities = async () => {
       const response = await getActivities();
-      console.log(response, "Awaiting the response or not");
+      //console.log(response, "Awaiting the response or not");
       setActivities(response);
     };
     getAllActivities();

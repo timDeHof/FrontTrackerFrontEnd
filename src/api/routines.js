@@ -54,3 +54,19 @@ export const updateRoutine = async (updatedRoutineDetails, routineId) => {
     console.error("uh oh, trouble updating routine", error);
   }
 };
+
+export const deleteRoutine = async (token, routineId) => {
+  try {
+    const response = await fetch(`${URL}/routines/${routineId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("uh oh, trouble creating new routine!", error);
+  }
+};
