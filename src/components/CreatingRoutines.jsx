@@ -14,7 +14,7 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
     const newUserRoutine = response;
 
     setUserRoutines([newUserRoutine, ...userRoutines]);
-    console.log("new userRoutines list:", userRoutines);
+    //console.log("new userRoutines list:", userRoutines);
     setName("");
     setGoal("");
   };

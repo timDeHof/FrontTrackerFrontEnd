@@ -18,7 +18,7 @@ import GetFilteredRoutines from "./GetFilteredRoutines";
 
 const MyRoutines = () => {
   const [userRoutines, setUserRoutines] = useState([]);
-  console.log("userRoutines in MyRoutines:", userRoutines);
+  //console.log("userRoutines in MyRoutines:", userRoutines);
   return (
     <div>
       <h1> My Routines</h1>

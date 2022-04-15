@@ -1,8 +1,23 @@
 import React, { useEffect } from "react";
-import { getPublicRoutinesByUser } from "../api/routines";
+import { deleteRoutine, getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
+
+function DestroyRoutines({ userRoutines }) {
+  const { token } = useAuth;
+
+  const handleDelete = async () => {
+    const data = await deleteRoutine(token, userRoutines.id);
+  };
+
+  return (
+    <button onClick={() => handleDelete(token, userRoutines.id)}>
+      Delete Routine
+    </button>
+  );
+}
+
 const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
-  console.log("userRoutines in GetFilteredRoutines:", userRoutines);
+  //console.log("userRoutines in GetFilteredRoutines:", userRoutines);
   const { user } = useAuth();
 
   useEffect(
@@ -48,6 +63,7 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                     </ul>
                   </li>
                 </ul>
+                <DestroyRoutines userRoutines={userRoutines} />
               </div>
             );
           })
