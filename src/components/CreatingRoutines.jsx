@@ -5,7 +5,7 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
   const { token } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
-  const [isPublic, setIsPublic] = useState("");
+  const [isPublic, setIsPublic] = useState(true);
   //console.log("token:", token);
 
   const handleSubmit = async (ev) => {
@@ -20,9 +20,7 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
     setName("");
     setGoal("");
   };
-  const handleIsPublic = () => {
-    setIsPublic();
-  };
+
   return (
     <div className="newRoutines">
       <form onSubmit={handleSubmit}>
@@ -38,8 +36,7 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
           value={goal}
           onChange={(ev) => setGoal(ev.target.value)}
         />
-        {/* create a dropdown for "isPublic" */}
-        <button onclick={() => setIsPublic(true)}>Is Public</button>
+        {/* create a select box for "isPublic" */}
         <button type="submit">Create Routine</button>
       </form>
     </div>

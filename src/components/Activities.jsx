@@ -34,10 +34,11 @@ function Activities() {
                 <ul>
                   <li>
                     <p>Name: {activity.name}</p>
-                    {/* ternary operator that check isLoggedIn is true, then display a list of routines associated with the activity */}
+                    {/* button saying "show Public routines", when clicked a list of all public routines which feature that activity  */}
                   </li>
                   <li>
                     <p> Description: {activity.description}</p>
+                    {/* ternary operator that check isLoggedIn is true, then give user the ability to edit description */}
                   </li>
                 </ul>
               </div>

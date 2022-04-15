@@ -24,12 +24,13 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
       console.log("user's username:", user.username);
       if (user.username) {
         const response = await getPublicRoutinesByUser(user.username, token);
-        console.log("response:", response);
+        console.log("response ", response);
         setUserRoutines(response);
       }
     };
     getAllPublicRoutinesByUser();
   }, [setUserRoutines, user.username]);
+
   return (
     <div className="routines">
       {userRoutines && userRoutines.length
@@ -40,12 +41,13 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                 <ul>
                   <li>
                     <p>Name: {userRoutine.name}</p>
+                    <button onClick="UpdateName()">Update Name</button>
                   </li>
                   <li>
                     <p>Goal: {userRoutine.goal}</p>
                   </li>
                   <li>
-                    <p>Is Public: {userRoutine.isPublic}</p>
+                    <p>Is Public: {JSON.stringify(userRoutine.isPublic)}</p>
                   </li>
                   <li>
                     <p>Activities: </p>

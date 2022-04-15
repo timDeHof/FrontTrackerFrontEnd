@@ -20,3 +20,6 @@ export const createActivities = async (activityDetails, token) => {
     console.log(error, "it isnt running");
   }
 };
+// getPubicRoutinesbyActivity
+
+// updateActivity

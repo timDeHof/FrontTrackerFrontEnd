@@ -4,7 +4,7 @@ import GetFilteredRoutines from "./GetFilteredRoutines";
 
 /**
  *   As a registered user on the My Routines tab, I want to:
- *     [WIP] - be shown a form to create a new routine
+ *     [x] - be shown a form to create a new routine
  *           -- the form should have text fields for name and goal
  *         - for each routine which is owned by me I should
  *              [] - be able to update the name and goal for the routine
