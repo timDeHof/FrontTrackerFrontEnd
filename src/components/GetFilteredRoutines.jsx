@@ -2,23 +2,19 @@ import React, { useEffect } from "react";
 import { deleteRoutine, getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 
-function DestroyRoutines({ userRoutines }) {
-  const { token } = useAuth;
-
-  const handleDelete = async () => {
-    const data = await deleteRoutine(token, userRoutines.id);
-  };
-
-  return (
-    <button onClick={() => handleDelete(token, userRoutines.id)}>
-      Delete Routine
-    </button>
-  );
-}
-
 const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
   //console.log("userRoutines in GetFilteredRoutines:", userRoutines);
-  const { user } = useAuth();
+  const { user, token } = useAuth();
+
+  const handleDelete = async (id) => {
+    console.log("userRoutine id:", id);
+    const data = await deleteRoutine(token, id);
+    const filteredRoutines = userRoutines.filter(
+      (routine) => routine.id !== id
+    );
+    const newArray = [...filteredRoutines, data];
+    setUserRoutines(newArray);
+  };
 
   useEffect(
     (username) => {
@@ -63,7 +59,9 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                     </ul>
                   </li>
                 </ul>
-                <DestroyRoutines userRoutines={userRoutines} />
+                <button onClick={() => handleDelete(userRoutine.id)}>
+                  Delete Routine
+                </button>
               </div>
             );
           })
