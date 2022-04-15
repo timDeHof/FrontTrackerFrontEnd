@@ -9,25 +9,27 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
   const handleDelete = async (id) => {
     console.log("userRoutine id:", id);
     const data = await deleteRoutine(token, id);
+    console.log("deleted data:", data);
     const filteredRoutines = userRoutines.filter(
       (routine) => routine.id !== id
     );
-    const newArray = [...filteredRoutines, data];
-    setUserRoutines(newArray);
+    //const newArray = [...filteredRoutines];
+    setUserRoutines(filteredRoutines);
   };
 
-  useEffect(
-    (username) => {
-      const getAllPublicRoutinesByUser = async () => {
-        if (user.username) {
-          const response = await getPublicRoutinesByUser(user.username);
-          setUserRoutines(response);
-        }
-      };
-      getAllPublicRoutinesByUser();
-    },
-    [user.username]
-  );
+  useEffect(() => {}, [userRoutines]);
+
+  useEffect(() => {
+    const getAllPublicRoutinesByUser = async () => {
+      console.log("user's username:", user.username);
+      if (user.username) {
+        const response = await getPublicRoutinesByUser(user.username, token);
+        console.log("response:", response);
+        setUserRoutines(response);
+      }
+    };
+    getAllPublicRoutinesByUser();
+  }, [setUserRoutines, user.username]);
   return (
     <div className="routines">
       {userRoutines && userRoutines.length
@@ -41,6 +43,9 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                   </li>
                   <li>
                     <p>Goal: {userRoutine.goal}</p>
+                  </li>
+                  <li>
+                    <p>Is Public: {userRoutine.isPublic}</p>
                   </li>
                   <li>
                     <p>Activities: </p>

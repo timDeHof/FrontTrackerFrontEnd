@@ -34,6 +34,7 @@ function Activities() {
                 <ul>
                   <li>
                     <p>Name: {activity.name}</p>
+                    {/* ternary operator that check isLoggedIn is true, then display a list of routines associated with the activity */}
                   </li>
                   <li>
                     <p> Description: {activity.description}</p>

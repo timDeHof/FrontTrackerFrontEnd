@@ -13,9 +13,24 @@ export const getRoutines = async () => {
   }
 };
 
-export const getPublicRoutinesByUser = async (username) => {
+export const getRoutinesByUser = async (username, token) => {
   try {
-    const response = await fetch(`${URL}/users/${username}/routines`);
+    const response = await fetch(`${URL}/users/${username}/routines`, {
+      headers: {
+        "content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {}
+};
+export const getPublicRoutinesByUser = async (username, token) => {
+  try {
+    const response = await fetch(`${URL}/users/${username}/routines`, {
+      headers: {
+        "content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const result = await response.json();
     //console.log("result:", result);
     if (result.error) throw result.error;
@@ -24,7 +39,7 @@ export const getPublicRoutinesByUser = async (username) => {
     console.error("uh oh, trouble fetching user's routines!", error);
   }
 };
-export const createRoutines = async (routineDetails, token) => {
+export const createRoutines = async ({ name, goal, isPublic }, token) => {
   //console.log(routineDetails);
   try {
     const response = await fetch(`${URL}/routines`, {
@@ -33,9 +48,10 @@ export const createRoutines = async (routineDetails, token) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(routineDetails),
+      body: JSON.stringify({ name: name, goal: goal, isPublic: isPublic }),
     });
     const data = await response.json();
+    console.log("data in createRoutines:", data);
     return data;
   } catch (error) {
     console.error("uh oh, trouble creating new routine!", error);

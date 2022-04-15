@@ -5,20 +5,24 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
   const { token } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
+  const [isPublic, setIsPublic] = useState("");
+  //console.log("token:", token);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const routineObj = { name, goal };
+    const routineObj = { name, goal, isPublic };
     const response = await createRoutines(routineObj, token);
-
     const newUserRoutine = response;
-
-    setUserRoutines([newUserRoutine, ...userRoutines]);
-    //console.log("new userRoutines list:", userRoutines);
+    //console.log("newUserRoutine in CreatingRoutines comp:", newUserRoutine);
+    const newArray = [newUserRoutine, ...userRoutines];
+    //console.log("new arr list:", newArray);
+    setUserRoutines(newArray);
     setName("");
     setGoal("");
   };
-
+  const handleIsPublic = () => {
+    setIsPublic();
+  };
   return (
     <div className="newRoutines">
       <form onSubmit={handleSubmit}>
@@ -34,6 +38,8 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
           value={goal}
           onChange={(ev) => setGoal(ev.target.value)}
         />
+        {/* create a dropdown for "isPublic" */}
+        <button onclick={() => setIsPublic(true)}>Is Public</button>
         <button type="submit">Create Routine</button>
       </form>
     </div>

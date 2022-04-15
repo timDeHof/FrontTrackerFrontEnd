@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getRoutines } from "../api/routines";
-import CreatingRoutines from "./CreatingRoutines";
+
 /** GOALS
  *  As any user on the Routines tab, I want to:
  *     [x] - see a list of all public routines showing:
