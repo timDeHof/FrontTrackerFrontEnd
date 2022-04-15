@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
-  //const [userRoutines, setUserRoutines] = useState([]);
   console.log("userRoutines in GetFilteredRoutines:", userRoutines);
   const { user } = useAuth();
-  //console.log("user:", user.username);
+
   useEffect(
     (username) => {
       const getAllPublicRoutinesByUser = async () => {
