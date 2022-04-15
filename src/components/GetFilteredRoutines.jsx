@@ -30,7 +30,7 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
     };
     getAllPublicRoutinesByUser();
   }, [setUserRoutines, user.username]);
-
+  const handleUpdateRoutine = async (user) => {};
   return (
     <div className="routines">
       {userRoutines && userRoutines.length
@@ -41,7 +41,6 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                 <ul>
                   <li>
                     <p>Name: {userRoutine.name}</p>
-                    <button onClick="UpdateName()">Update Name</button>
                   </li>
                   <li>
                     <p>Goal: {userRoutine.goal}</p>
@@ -68,6 +67,9 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                 </ul>
                 <button onClick={() => handleDelete(userRoutine.id)}>
                   Delete Routine
+                </button>
+                <button onClick={() => handleUpdateRoutine(userRoutine)}>
+                  Update Routine
                 </button>
               </div>
             );
