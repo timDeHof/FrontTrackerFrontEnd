@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 function Activities() {
   const { isLoggedIn } = useAuth();
   const [activities, setActivities] = useState("");
-
+  console.log("activities:", activities);
   useEffect(() => {
     const getAllActivities = async () => {
       const response = await getActivities();

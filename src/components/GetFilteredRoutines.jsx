@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { deleteRoutine, getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
+import AddActivitiesToRoutines from "./AddActivitiesToRoutines";
 
 const GetFilteredRoutines = ({
   activities,
@@ -10,6 +11,7 @@ const GetFilteredRoutines = ({
 }) => {
   //console.log("userRoutines in GetFilteredRoutines:", userRoutines);
   const { user, token } = useAuth();
+  const { buttonClicked, setButtonClicked } = useState(false);
 
   const handleDelete = async (id) => {
     console.log("userRoutine id:", id);
@@ -21,7 +23,11 @@ const GetFilteredRoutines = ({
     //const newArray = [...filteredRoutines];
     setUserRoutines(filteredRoutines);
   };
-  const updateRoutine = async (userRoutine) => {};
+  const handleClick = () => {
+    let buttonStatus = setButtonClicked(true);
+    return buttonStatus;
+  };
+  // should be a function that enable a form to add an activity to a routine
 
   useEffect(() => {}, [userRoutines]);
 
@@ -74,10 +80,13 @@ const GetFilteredRoutines = ({
                 <button onClick={() => handleDelete(userRoutine.id)}>
                   Delete Routine
                 </button>
-                <button onClick={() => updateRoutine(userRoutine)}>
-                  Update Routine
-                </button>
-                <button>Add an Activity</button>
+                <button>Update Routine</button>
+                <button onClick={() => handleClick}>Add an Activity</button>
+                {/* <div>
+                  {buttonClicked && (
+                    <AddActivitiesToRoutines activities={activities} />
+                  )}
+                </div> */}
               </div>
             );
           })
