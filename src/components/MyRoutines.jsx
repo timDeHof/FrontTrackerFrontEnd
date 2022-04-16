@@ -16,7 +16,7 @@ import GetFilteredRoutines from "./GetFilteredRoutines";
  *              [] - be able to remove any activity from the routine
  */
 
-const MyRoutines = () => {
+const MyRoutines = (activities, setActivities) => {
   const [userRoutines, setUserRoutines] = useState([]);
   //console.log("userRoutines in MyRoutines:", userRoutines);
   return (
@@ -29,6 +29,8 @@ const MyRoutines = () => {
       <GetFilteredRoutines
         userRoutines={userRoutines}
         setUserRoutines={setUserRoutines}
+        activities={activities}
+        setActivities={setActivities}
       />
     </div>
   );

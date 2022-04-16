@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { deleteRoutine, getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 
-const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
+const GetFilteredRoutines = ({
+  activities,
+  setActivities,
+  userRoutines,
+  setUserRoutines,
+}) => {
   //console.log("userRoutines in GetFilteredRoutines:", userRoutines);
   const { user, token } = useAuth();
 
@@ -16,6 +21,7 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
     //const newArray = [...filteredRoutines];
     setUserRoutines(filteredRoutines);
   };
+  const updateRoutine = async (userRoutine) => {};
 
   useEffect(() => {}, [userRoutines]);
 
@@ -30,7 +36,7 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
     };
     getAllPublicRoutinesByUser();
   }, [setUserRoutines, user.username]);
-  const handleUpdateRoutine = async (user) => {};
+
   return (
     <div className="routines">
       {userRoutines && userRoutines.length
@@ -68,9 +74,10 @@ const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
                 <button onClick={() => handleDelete(userRoutine.id)}>
                   Delete Routine
                 </button>
-                <button onClick={() => handleUpdateRoutine(userRoutine)}>
+                <button onClick={() => updateRoutine(userRoutine)}>
                   Update Routine
                 </button>
+                <button>Add an Activity</button>
               </div>
             );
           })

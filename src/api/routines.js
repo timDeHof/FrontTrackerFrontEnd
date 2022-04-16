@@ -51,7 +51,7 @@ export const createRoutines = async ({ name, goal }, token) => {
       body: JSON.stringify({ name: name, goal: goal, isPublic: true }),
     });
     const data = await response.json();
-    console.log("data in createRoutines:", data);
+    //console.log("data in createRoutines:", data);
     return data;
   } catch (error) {
     console.error("uh oh, trouble creating new routine!", error);
