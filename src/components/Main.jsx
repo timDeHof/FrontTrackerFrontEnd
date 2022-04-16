@@ -11,7 +11,7 @@ import useAuth from "../hooks/useAuth";
 function Main() {
   const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
   const { activities, setActivities } = useState([]);
-  console.log("activities:", activities);
+  //console.log("activities:", activities);
   useEffect(() => {
     let localStorageToken = localStorage.getItem("token");
     if (localStorageToken) {
