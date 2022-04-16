@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { deleteRoutine, updateRoutine } from "../api/routines";
+import AddActivitiesToRoutines from "./AddActivitiesToRoutines";
 
 const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
-  const { user, token } = useAuth();
+  const { token } = useAuth();
   const [newRoutineName, setNewRoutineName] = useState("");
   const [newRoutineGoal, setNewRoutineGoal] = useState("");
   const [newRoutineIsPublic, setNewRoutineIsPublic] = useState("");
@@ -18,9 +19,20 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
     if (newRoutineGoal !== "") {
       routine.goal = newRoutineGoal;
     }
+    if (newRoutineIsPublic !== null) {
+      routine.isPublic = newRoutineIsPublic;
+    }
     const data = await updateRoutine(routine, routineId, token);
-    //const params = { title: routineName, routineId };
-    console.log(data);
+    setNewRoutineName("");
+    setNewRoutineGoal("");
+    setNewRoutineIsPublic("");
+    const params = {
+      name: routine.name,
+      goal: routine.goal,
+      isPublic: routine.isPublic,
+      routineId,
+    };
+    console.log(params);
   };
 
   const handleDelete = async (id) => {
@@ -30,13 +42,15 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
     const filteredRoutines = userRoutines.filter(
       (routine) => routine.id !== id
     );
-    const newArray = [...filteredRoutines];
     setUserRoutines(filteredRoutines);
   };
 
   return (
     <div className="routineList">
       <h2>Routine {id + 1}:</h2>
+      <button onClick={() => handleDelete(userRoutine.id)}>
+        Delete Routine
+      </button>
       <ul>
         <li>
           <p>Name: {userRoutine.name}</p>
@@ -62,6 +76,14 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
         </li>
         <li>
           <p>Is Public: {JSON.stringify(userRoutine.isPublic)}</p>
+          <form onSubmit={(e) => handleSubmit(e, userRoutine.id)}>
+            <input
+              placeholder="isPublic"
+              value={newRoutineIsPublic}
+              onChange={(e) => setNewRoutineIsPublic(Boolean(e.target.value))}
+            />
+            <button type="submit">Update Is Public</button>
+          </form>
         </li>
         <li>
           <p>Activities: </p>
@@ -71,18 +93,16 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
                   return (
                     <div key={`activity${i}`}>
                       <li>Activity Name: {activity.name}</li>
-                      <li>Count:{activity.count}</li>
-                      <li>Duration:{activity.duration}</li>
+                      <li>Count:{activity.count} reps</li>
+                      <li>Duration:{activity.duration} minutes</li>
                     </div>
                   );
                 })
               : null}
           </ul>
+          <AddActivitiesToRoutines />
         </li>
       </ul>
-      <button onClick={() => handleDelete(userRoutine.id)}>
-        Delete Routine
-      </button>
     </div>
   );
 };

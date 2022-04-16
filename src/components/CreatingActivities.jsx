@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createActivities } from "../api/MyActivities";
 import useAuth from "../hooks/useAuth";
 
-const CreatingActivities = ({ activities, setActivities }) => {
-  const { token } = useAuth();
+const CreatingActivities = () => {
+  const { token, activities, setActivities } = useAuth();
+  console.log("activities:", activities);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 

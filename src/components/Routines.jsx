@@ -8,7 +8,7 @@ import { getRoutines } from "../api/routines";
  *         A list of activities for the routine, including their name, description, and *         duration and/or count
  *
  */
-function Routines({ userObj, token }) {
+function Routines() {
   const [routines, setRoutines] = useState([]);
   //const [userId, setUserId] = useState([]);
 

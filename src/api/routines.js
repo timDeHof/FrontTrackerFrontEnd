@@ -59,10 +59,11 @@ export const createRoutines = async ({ name, goal }, token) => {
 };
 
 export const updateRoutine = async (
-  updatedRoutineDetails,
+  { name, goal, isPublic },
   routineId,
   token
 ) => {
+  //console.log("datatype of isPublic:", typeof isPublic);
   try {
     const response = await fetch(`${URL}/routines/${routineId}`, {
       method: "PATCH",
@@ -70,7 +71,7 @@ export const updateRoutine = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(updatedRoutineDetails),
+      body: JSON.stringify({ name: name, goal: goal, isPublic: isPublic }),
     });
     const data = await response.json();
     return data;
@@ -92,5 +93,30 @@ export const deleteRoutine = async (token, routineId) => {
     return data;
   } catch (error) {
     console.error("uh oh, trouble creating new routine!", error);
+  }
+};
+//attachActivityToRoutine
+export const attachActivityToRoutine = async (
+  { activityId, count, duration },
+  routineId,
+  token
+) => {
+  try {
+    const response = await fetch(`${URL}/routines/${routineId}/activities`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        activityId: activityId,
+        count: count,
+        duration: duration,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("uh oh, trouble adding activity to routine", error);
   }
 };

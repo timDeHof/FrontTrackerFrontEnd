@@ -13,9 +13,7 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
     const routineObj = { name, goal, isPublic };
     const response = await createRoutines(routineObj, token);
     const newUserRoutine = response;
-    //console.log("newUserRoutine in CreatingRoutines comp:", newUserRoutine);
     const newArray = [newUserRoutine, ...userRoutines];
-    //console.log("new arr list:", newArray);
     setUserRoutines(newArray);
     setName("");
     setGoal("");

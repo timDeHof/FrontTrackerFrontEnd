@@ -1,27 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getPublicRoutinesByUser } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 import SingleRoutine from "./SingleRoutine";
-//import AddActivitiesToRoutines from "./AddActivitiesToRoutines";
 
-const GetFilteredRoutines = ({
-  activities,
-  setActivities,
-  userRoutines,
-  setUserRoutines,
-}) => {
-  //console.log("userRoutines in GetFilteredRoutines:", userRoutines);
-  // console.log("activities:", activities);
+const GetFilteredRoutines = ({ userRoutines, setUserRoutines }) => {
   const { user, token } = useAuth();
-  //const { buttonClicked, setButtonClicked } = useState(false);
-  const [routineName, setRoutineName] = useState("");
-
-  // const handleClick = () => {
-  //   let buttonStatus = setButtonClicked(true);
-  //   return buttonStatus;
-  // };
-
-  // should be a function that enable a form to add an activity to a routine
 
   useEffect(() => {}, [userRoutines]);
 
@@ -35,13 +18,12 @@ const GetFilteredRoutines = ({
       }
     };
     getAllPublicRoutinesByUser();
-  }, [setUserRoutines, user.username]);
+  }, [setUserRoutines, token, user.username]);
 
   return (
     <div className="routines">
       {userRoutines && userRoutines.length
         ? userRoutines.map((userRoutine, id) => {
-            //console.log("single routine:", userRoutine);
             return (
               <SingleRoutine
                 key={`routine${id}`}

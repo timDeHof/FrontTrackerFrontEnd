@@ -1,11 +1,13 @@
 import AuthContext from "../AuthContext";
 import { useState, useEffect } from "react";
 import { fetchUser } from "../api/user";
+import { getActivities } from "../api/Activities";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     async function getUser() {
@@ -20,6 +22,16 @@ const AuthProvider = ({ children }) => {
     getUser();
   }, [token]);
 
+  useEffect(() => {
+    const getAllActivities = async () => {
+      const response = await getActivities();
+      //console.log("activities response:", response);
+
+      setActivities(response);
+    };
+    getAllActivities();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -29,6 +41,8 @@ const AuthProvider = ({ children }) => {
         setToken,
         isLoggedIn,
         setIsLoggedIn,
+        activities,
+        setActivities,
       }}
     >
       {children}

@@ -3,7 +3,7 @@ export const COHORT = "2202-FTB-ET-WEB-FT";
 const URL = BASE_URL + "/api";
 
 export const createActivities = async (activityDetails, token) => {
-  console.log(activityDetails);
+  //console.log(activityDetails);
 
   try {
     const response = await fetch(`${URL}/activities/`, {
@@ -20,6 +20,6 @@ export const createActivities = async (activityDetails, token) => {
     console.log(error, "uh oh, trouble creating new activity");
   }
 };
-// getPubicRoutinesbyActivity
+// getPubicRoutinesByActivity
 
 // updateActivity
