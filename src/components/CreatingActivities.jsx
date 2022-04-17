@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 
 const CreatingActivities = () => {
   const { token, activities, setActivities } = useAuth();
-  console.log("activities:", activities);
+  //console.log("activities:", activities);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 

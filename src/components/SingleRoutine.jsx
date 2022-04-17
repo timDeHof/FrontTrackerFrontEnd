@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { deleteRoutine, updateRoutine } from "../api/routines";
 import AddActivitiesToRoutines from "./AddActivitiesToRoutines";
+import SingleActivity from "./SingleActivity";
 
 const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
   const { token } = useAuth();
@@ -91,11 +92,11 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
             {userRoutine.activities && userRoutine.activities.length
               ? userRoutine.activities.map((activity, i) => {
                   return (
-                    <div key={`activity${i}`}>
-                      <li>Activity Name: {activity.name}</li>
-                      <li>Count:{activity.count} reps</li>
-                      <li>Duration:{activity.duration} minutes</li>
-                    </div>
+                    <SingleActivity
+                      key={`activity${i}`}
+                      userRoutine={userRoutine}
+                      activity={activity}
+                    />
                   );
                 })
               : null}
