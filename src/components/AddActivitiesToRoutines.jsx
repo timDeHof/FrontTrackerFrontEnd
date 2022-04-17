@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { attachActivityToRoutine } from "../api/routines";
 /**
  *  A small form which has a dropdown for all activities,
  *  an inputs for count and duration
  */
-function AddActivitiesToRoutines() {
-  const { activities } = useAuth();
-  //console.log("activities:", activities);
+function AddActivitiesToRoutines({ userRoutine }) {
+  const { activities, token } = useAuth();
+  console.log("activities:", activities);
   const [activityName, setActivityName] = useState("");
   const [activityCount, setActivityCount] = useState(0);
   const [activityDuration, setActivityDuration] = useState(0);
@@ -17,10 +18,21 @@ function AddActivitiesToRoutines() {
     </option>
   ));
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const activityObj = { count: activityCount, duration: activityDuration };
-    console.log(activityObj);
+    console.log("userRoutine id:", userRoutine.id);
+    const activityObj = {
+      activityId: 38,
+      count: activityCount,
+      duration: activityDuration,
+    };
+    const response = await attachActivityToRoutine(
+      activityObj,
+      userRoutine.id,
+      token
+    );
+    const addedActivity = response;
+    console.log(addedActivity);
   };
   return (
     <div className="activitiesList">
