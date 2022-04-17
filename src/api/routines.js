@@ -58,7 +58,7 @@ export const createRoutines = async ({ name, goal }, token) => {
   }
 };
 
-export const updateRoutine = async ({ name, goal }, routineId, token) => {
+export const updateRoutine = async (routine, routineId, token) => {
   try {
     const response = await fetch(`${URL}/routines/${routineId}/`, {
       method: "PATCH",
@@ -66,7 +66,7 @@ export const updateRoutine = async ({ name, goal }, routineId, token) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ name, goal }),
+      body: JSON.stringify(routine),
     });
     const data = await response.json();
     return data;

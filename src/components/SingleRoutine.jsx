@@ -22,17 +22,10 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
     if (newRoutineIsPublic !== null) {
       routine.isPublic = newRoutineIsPublic;
     }
-    const data = await updateRoutine(routine, routineId, token);
+    await updateRoutine(routine, routineId, token);
     setNewRoutineName("");
     setNewRoutineGoal("");
     setNewRoutineIsPublic("");
-    const params = {
-      name: routine.name,
-      goal: routine.goal,
-      isPublic: routine.isPublic,
-      routineId,
-    };
-    console.log(params);
   };
 
   const handleDelete = async (id) => {
@@ -76,7 +69,7 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
           <p>Is Public: {JSON.stringify(userRoutine.isPublic)}</p>
           <form onSubmit={(e) => handleSubmit(e, userRoutine.id)}>
             <input
-              placeholder="isPublic"
+              placeholder="set to true"
               value={newRoutineIsPublic}
               onChange={(e) => setNewRoutineIsPublic(Boolean(e.target.value))}
             />
