@@ -5,25 +5,24 @@ import { attachActivityToRoutine } from "../api/routines";
  *  A small form which has a dropdown for all activities,
  *  an inputs for count and duration
  */
-function AddActivitiesToRoutines({ userRoutine }) {
+function AddActivitiesToRoutines({
+  userRoutine,
+  userRoutines,
+  setUserRoutines,
+}) {
   const { activities, token } = useAuth();
   //console.log("activities:", activities);
-  const [activityName, setActivityName] = useState("");
+
   const [activityCount, setActivityCount] = useState(0);
   const [activityDuration, setActivityDuration] = useState(0);
+  const [selectActivity, setSelectActivity] = useState(0);
 
-  const listActivity = activities.map((activity, id) => (
-    <option key={`activityList${id}`} value={activity.name} id={activity.id}>
-      {activity.name}
-      {activity.id}
-    </option>
-  ));
-
+  //console.log("listActivity:", activity.id);
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     console.log("userRoutine id:", userRoutine.id);
     const activityObj = {
-      activityId: 3,
+      activityId: selectActivity,
       count: activityCount,
       duration: activityDuration,
     };
@@ -33,20 +32,27 @@ function AddActivitiesToRoutines({ userRoutine }) {
       token
     );
     const addedActivity = response;
-    console.log(addedActivity);
+    const newArray = [addedActivity, ...userRoutine.activities];
+    console.log("userRoutine", userRoutine);
+    setUserRoutines(newArray);
+    console.log("userRoutines:", userRoutines);
+  };
+  const listActivity = activities.map((activity, id) => (
+    <option key={`activityList${id}`} value={activity.id} id={activity.id}>
+      {activity.name}
+      {activity.id}
+    </option>
+  ));
+  const handleSelect = (e) => {
+    setSelectActivity(parseInt(e.target.value));
+    console.log("selectActivity:", typeof selectActivity, selectActivity);
   };
   return (
     <div className="activitiesList">
       <h2>Add an Activity</h2>
       <form onSubmit={(ev) => handleSubmit(ev)}>
         <label htmlFor="activities">Activities:</label>
-        <select
-          name="activities"
-          value={activityName}
-          onChange={(ev) => setActivityName(ev.target.value)}
-        >
-          {listActivity}
-        </select>
+        <select onChange={handleSelect}>{listActivity}</select>
         <label htmlFor="count">Count:</label>
         <input
           type="number"
