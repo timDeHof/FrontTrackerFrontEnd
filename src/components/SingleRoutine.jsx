@@ -100,7 +100,7 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
                 })
               : null}
           </ul>
-          <AddActivitiesToRoutines />
+          <AddActivitiesToRoutines userRoutine={userRoutine} />
         </li>
       </ul>
     </div>
