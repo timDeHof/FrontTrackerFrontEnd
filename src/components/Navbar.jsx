@@ -16,8 +16,8 @@ function Navbar() {
         <Link to="/routines">Routines </Link>
         <Link to="/Login">Log In </Link>
         <Link to="/Signup">Signup </Link>
-        <Link to="/MyRoutines">My Routines </Link>
-        <Link to="/Activities">The Activities</Link>
+        <Link to="/MyRoutines"> My Routines </Link>
+        <Link to="/Activities">Activities </Link>
       </nav>
     </div>
   );

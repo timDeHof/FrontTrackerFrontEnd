@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createRoutines } from "../api/routines";
 import useAuth from "../hooks/useAuth";
+
 function CreatingRoutines({ userRoutines, setUserRoutines }) {
   console.log("userRoutines in CreatingRoutines:", userRoutines);
   const { token, user } = useAuth();
