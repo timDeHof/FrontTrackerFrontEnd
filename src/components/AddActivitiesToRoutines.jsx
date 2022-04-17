@@ -11,7 +11,6 @@ function AddActivitiesToRoutines({ userRoutine }) {
   const [selectedActivity, setSelectedActivity] = useState("");
   const [activityCount, setActivityCount] = useState(0);
   const [activityDuration, setActivityDuration] = useState(0);
-  const [id, setId] = useState(0);
 
   const listActivity = activities.map((activity, id) => (
     <option key={`activityList${id}`} value={activity.name} id={activity.id}>
@@ -27,7 +26,6 @@ function AddActivitiesToRoutines({ userRoutine }) {
     ev.preventDefault();
     try {
       console.log("selectedActivity:", selectedActivity);
-      //console.log("activity[0]", activities[0].name);
       console.log("routine id:", userRoutine.id);
       // let { choosenActivity } = activities.filter(
       //   () => activities.name === selectedActivity
