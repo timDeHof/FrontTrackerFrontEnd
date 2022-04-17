@@ -102,13 +102,13 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
                 })
               : null}
           </ul>
-          <React.StrictMode>
-            <AddActivitiesToRoutines
-              userRoutine={userRoutine}
-              setUserRoutines={setUserRoutines}
-              userRoutines={userRoutines}
-            />
-          </React.StrictMode>
+
+          <AddActivitiesToRoutines
+            userRoutine={userRoutine.activities}
+            setUserRoutines={setUserRoutines}
+            userRoutines={userRoutines}
+            routineId={userRoutine.id}
+          />
         </li>
       </ul>
     </div>

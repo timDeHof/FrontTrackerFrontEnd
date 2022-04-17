@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
-import { attachActivityToRoutine } from "../api/routines";
+import {
+  attachActivityToRoutine,
+  getPublicRoutinesByUser,
+} from "../api/routines";
 /**
  *  A small form which has a dropdown for all activities,
  *  an inputs for count and duration
@@ -9,15 +12,18 @@ function AddActivitiesToRoutines({
   userRoutine,
   userRoutines,
   setUserRoutines,
+  routineId,
 }) {
-  const { activities, token } = useAuth();
+  const { user, activities, token } = useAuth();
   //console.log("activities:", activities);
-
+  console.log("userRoutine:", userRoutine);
   const [activityCount, setActivityCount] = useState(0);
   const [activityDuration, setActivityDuration] = useState(0);
   const [selectActivity, setSelectActivity] = useState(0);
+  const [listedActivities, setListedActivities] = useState(0);
 
   //console.log("listActivity:", activity.id);
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     console.log("userRoutine id:", userRoutine.id);
@@ -26,16 +32,22 @@ function AddActivitiesToRoutines({
       count: activityCount,
       duration: activityDuration,
     };
+    console.log("userRoutines:", userRoutines);
     const response = await attachActivityToRoutine(
       activityObj,
-      userRoutine.id,
+      routineId,
       token
     );
-    const addedActivity = response;
-    const newArray = [addedActivity, ...userRoutine.activities];
-    console.log("userRoutine", userRoutine);
+    console.log("response:", response);
+
+    const result = await getPublicRoutinesByUser(user.username, token);
+    console.log("result ", result);
+    //setUserRoutines(response);
+    const newArray = result;
+    console.log("newArray:", newArray);
     setUserRoutines(newArray);
-    console.log("userRoutines:", userRoutines);
+    console.log("newArray after setUserRoutines:", newArray);
+    console.log("userRoutines activities:", await userRoutines);
   };
   const listActivity = activities.map((activity, id) => (
     <option key={`activityList${id}`} value={activity.id} id={activity.id}>
@@ -43,6 +55,16 @@ function AddActivitiesToRoutines({
       {activity.id}
     </option>
   ));
+  // setListedActivities(listActivity);
+  // useEffect(
+  //   (listActivity) => {
+  //     const list = () => {
+  //       return listedActivities;
+  //     };
+  //     list();
+  //   },
+  //   [userRoutines]
+  // );
   const handleSelect = (e) => {
     setSelectActivity(parseInt(e.target.value));
     console.log("selectActivity:", typeof selectActivity, selectActivity);
@@ -72,14 +94,7 @@ function AddActivitiesToRoutines({
           min="0"
           max="60"
         />
-        <button
-          type="submit"
-          onClick={() => {
-            console.log("activity id:", listActivity.props);
-          }}
-        >
-          Add Activity
-        </button>
+        <button type="submit">Add Activity</button>
       </form>
     </div>
   );
