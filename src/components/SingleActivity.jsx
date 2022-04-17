@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { updateRoutineActivity } from "../api/routine_activities";
+import {
+  deleteRoutineActivity,
+  updateRoutineActivity,
+} from "../api/routine_activities";
 import useAuth from "../hooks/useAuth";
 const SingleActivity = ({ userRoutine, activity, id }) => {
   const { token } = useAuth();
   const [newCount, setNewCount] = useState(0);
   const [newDuration, setNewDuration] = useState(0);
 
-  const handleDeleteActivity = async (activity) => {
-    console.log("selected activity:", activity.activities);
+  const handleDeleteActivity = async (routineActivityId) => {
+    console.log("token:", token);
+    console.log("selected routine_activityId:", routineActivityId);
+    const data = await deleteRoutineActivity(routineActivityId, token);
+    console.log("deleted data back:", data);
+    const filteredActivities = userRoutine.activities.filter(
+      (activity) => activity.routineActivityId !== routineActivityId
+    );
+    console.log("filteredActivities:", filteredActivities);
   };
 
   const handleUpdateActivity = async (ev, routineActivityId) => {

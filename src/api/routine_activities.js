@@ -26,11 +26,13 @@ export const updateRoutineActivity = async (
 };
 
 export const deleteRoutineActivity = async (routineActivityId, token) => {
+  console.log("routineActivityId:", routineActivityId);
+  console.log("token:", token);
   try {
     const response = await fetch(
       `${URL}/routine_activities/${routineActivityId}`,
       {
-        method: "PATCH",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -38,6 +40,7 @@ export const deleteRoutineActivity = async (routineActivityId, token) => {
       }
     );
     const data = await response.json();
+    return data;
   } catch (error) {
     console.error("uh oh, trouble deleting activity!", error);
   }
