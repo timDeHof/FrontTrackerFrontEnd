@@ -15,7 +15,7 @@ export const getRoutines = async () => {
 
 export const getRoutinesByUser = async (username, token) => {
   try {
-    const response = await fetch(`${URL}/users/${username}/routines`, {
+    const response = await fetch(`${URL}/users/${username}/routines/`, {
       headers: {
         "content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -25,7 +25,7 @@ export const getRoutinesByUser = async (username, token) => {
 };
 export const getPublicRoutinesByUser = async (username, token) => {
   try {
-    const response = await fetch(`${URL}/users/${username}/routines`, {
+    const response = await fetch(`${URL}/users/${username}/routines/`, {
       headers: {
         "content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -92,7 +92,7 @@ export const deleteRoutine = async (token, routineId) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("uh oh, trouble creating new routine!", error);
+    console.error("uh oh, trouble deleting routine!", error);
   }
 };
 //attachActivityToRoutine

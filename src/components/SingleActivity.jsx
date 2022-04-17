@@ -1,26 +1,42 @@
 import React, { useState } from "react";
+import { updateRoutineActivity } from "../api/routine_activities";
 import useAuth from "../hooks/useAuth";
-const SingleActivity = ({ userRoutine, activity, i }) => {
+const SingleActivity = ({ userRoutine, activity, id }) => {
   const { token } = useAuth();
   const [newCount, setNewCount] = useState(0);
   const [newDuration, setNewDuration] = useState(0);
 
-  const handleDeleteActivity = (ev) => {
-    console.log("deleted activity");
+  const handleDeleteActivity = async (activity) => {
+    console.log("selected activity:", activity.activities);
   };
 
-  const handleUpdateActivity = (ev) => {
+  const handleUpdateActivity = async (ev, routineActivityId) => {
     ev.preventDefault();
-    console.log("update activity");
+    console.log("update activity:", routineActivityId);
+    const activity = {};
+    if (newCount !== "") {
+      activity.count = newCount;
+    }
+    if (newDuration !== "") {
+      activity.duration = newDuration;
+    }
+    const data = await updateRoutineActivity(
+      activity,
+      routineActivityId,
+      token
+    );
+    console.log("data back:", data);
   };
   return (
-    <div key={`activity${i}`}>
+    <div key={`activity${id}`}>
       <li>Activity Name: {activity.name}</li>
-      <button onClick={() => handleDeleteActivity(userRoutine.id)}>
+      <button onClick={() => handleDeleteActivity(activity.routineActivityId)}>
         Delete Activity from Routine
       </button>
       <li>Count:{activity.count} reps</li>
-      <form onSubmit={(ev) => handleUpdateActivity(ev, userRoutine.id)}>
+      <form
+        onSubmit={(ev) => handleUpdateActivity(ev, activity.routineActivityId)}
+      >
         <input
           type="number"
           name="count"

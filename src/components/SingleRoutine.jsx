@@ -90,18 +90,21 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
           <p>Activities: </p>
           <ul>
             {userRoutine.activities && userRoutine.activities.length
-              ? userRoutine.activities.map((activity, i) => {
+              ? userRoutine.activities.map((activity, id) => {
                   return (
                     <SingleActivity
-                      key={`activity${i}`}
+                      key={`activity${id}`}
                       userRoutine={userRoutine}
                       activity={activity}
+                      i={id}
                     />
                   );
                 })
               : null}
           </ul>
-          <AddActivitiesToRoutines userRoutine={userRoutine} />
+          <React.StrictMode>
+            <AddActivitiesToRoutines userRoutine={userRoutine} />
+          </React.StrictMode>
         </li>
       </ul>
     </div>
