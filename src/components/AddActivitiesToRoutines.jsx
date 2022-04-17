@@ -7,7 +7,7 @@ import { attachActivityToRoutine } from "../api/routines";
  */
 function AddActivitiesToRoutines({ userRoutine }) {
   const { activities, token } = useAuth();
-  console.log("activities:", activities);
+  //console.log("activities:", activities);
   const [activityName, setActivityName] = useState("");
   const [activityCount, setActivityCount] = useState(0);
   const [activityDuration, setActivityDuration] = useState(0);
@@ -23,7 +23,7 @@ function AddActivitiesToRoutines({ userRoutine }) {
     ev.preventDefault();
     console.log("userRoutine id:", userRoutine.id);
     const activityObj = {
-      activityId: 38,
+      activityId: 3,
       count: activityCount,
       duration: activityDuration,
     };
@@ -45,15 +45,7 @@ function AddActivitiesToRoutines({ userRoutine }) {
           value={activityName}
           onChange={(ev) => setActivityName(ev.target.value)}
         >
-          {activities.map((activity, id) => (
-            <option
-              key={`activityList${id}`}
-              value={activity.name}
-              id={activity.id}
-            >
-              {activity.name},id:{activity.id}
-            </option>
-          ))}
+          {listActivity}
         </select>
         <label htmlFor="count">Count:</label>
         <input

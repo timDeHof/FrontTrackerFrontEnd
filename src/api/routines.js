@@ -97,9 +97,7 @@ export const deleteRoutine = async (token, routineId) => {
 };
 //attachActivityToRoutine
 export const attachActivityToRoutine = async (
-  activityId,
-  count,
-  duration,
+  { activityId, count, duration },
   routineId,
   token
 ) => {
