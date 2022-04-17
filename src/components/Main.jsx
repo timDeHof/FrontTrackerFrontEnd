@@ -9,13 +9,14 @@ import SignUp from "./SignUp";
 import useAuth from "../hooks/useAuth";
 
 function Main() {
-  const { token, setToken, isLoggedIn, setIsLoggedIn } = useAuth();
+  const { token, setToken } = useAuth();
+
   useEffect(() => {
     let localStorageToken = localStorage.getItem("token");
     if (localStorageToken) {
       setToken(localStorageToken);
     }
-  }, [token]);
+  }, [setToken, token]);
 
   return (
     <div className="web-page">

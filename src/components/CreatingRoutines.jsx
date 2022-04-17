@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createRoutines } from "../api/routines";
 import useAuth from "../hooks/useAuth";
 
 function CreatingRoutines({ userRoutines, setUserRoutines }) {
-  console.log("userRoutines in CreatingRoutines:", userRoutines);
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
+  const [isPublic, setIsPublic] = useState(true);
+  //console.log("token:", token);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const routineObj = { name, goal };
+    const routineObj = { name, goal, isPublic };
     const response = await createRoutines(routineObj, token);
-    console.log("response in creatingRoutine:", response);
     const newUserRoutine = response;
-    console.log("newRoutine:", newUserRoutine);
-    let newUserRoutineList = [...userRoutines, newUserRoutine];
-    console.log("new userRoutines list:", newUserRoutineList);
-    setUserRoutines(newUserRoutineList);
+    const newArray = [newUserRoutine, ...userRoutines];
+    setUserRoutines(newArray);
     setName("");
     setGoal("");
   };
@@ -37,6 +35,7 @@ function CreatingRoutines({ userRoutines, setUserRoutines }) {
           value={goal}
           onChange={(ev) => setGoal(ev.target.value)}
         />
+        {/* create a select box for "isPublic" */}
         <button type="submit">Create Routine</button>
       </form>
     </div>

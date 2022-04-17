@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getRoutines } from "../api/routines";
-import CreatingRoutines from "./CreatingRoutines";
+
 /** GOALS
  *  As any user on the Routines tab, I want to:
  *     [x] - see a list of all public routines showing:
@@ -8,7 +8,7 @@ import CreatingRoutines from "./CreatingRoutines";
  *         A list of activities for the routine, including their name, description, and *         duration and/or count
  *
  */
-function Routines({ userObj, token }) {
+function Routines() {
   const [routines, setRoutines] = useState([]);
   //const [userId, setUserId] = useState([]);
 

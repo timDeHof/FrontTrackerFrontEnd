@@ -3,10 +3,10 @@ export const COHORT = "2202-FTB-ET-WEB-FT";
 const URL = BASE_URL + "/api";
 
 export const createActivities = async (activityDetails, token) => {
-  console.log(activityDetails);
+  //console.log(activityDetails);
 
   try {
-    const response = await fetch(`${URL}/activities`, {
+    const response = await fetch(`${URL}/activities/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,6 +17,9 @@ export const createActivities = async (activityDetails, token) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error, "it isnt running");
+    console.log(error, "uh oh, trouble creating new activity");
   }
 };
+// getPubicRoutinesByActivity
+
+// updateActivity
