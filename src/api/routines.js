@@ -97,7 +97,9 @@ export const deleteRoutine = async (token, routineId) => {
 };
 //attachActivityToRoutine
 export const attachActivityToRoutine = async (
-  { activityId, count, duration },
+  activityId,
+  count,
+  duration,
   routineId,
   token
 ) => {
@@ -109,9 +111,9 @@ export const attachActivityToRoutine = async (
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        activityId: activityId,
-        count: count,
-        duration: duration,
+        activityId,
+        count,
+        duration,
       }),
     });
     const data = await response.json();

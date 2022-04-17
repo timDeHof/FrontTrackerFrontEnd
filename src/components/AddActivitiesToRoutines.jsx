@@ -13,8 +13,9 @@ function AddActivitiesToRoutines({ userRoutine }) {
   const [activityDuration, setActivityDuration] = useState(0);
 
   const listActivity = activities.map((activity, id) => (
-    <option key={`activityList${id}`} value={activity.name}>
+    <option key={`activityList${id}`} value={activity.name} id={activity.id}>
       {activity.name}
+      {activity.id}
     </option>
   ));
 
@@ -37,14 +38,22 @@ function AddActivitiesToRoutines({ userRoutine }) {
   return (
     <div className="activitiesList">
       <h2>Add an Activity</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(ev) => handleSubmit(ev)}>
         <label htmlFor="activities">Activities:</label>
         <select
           name="activities"
           value={activityName}
-          onChange={(e) => setActivityName(e.target.value)}
+          onChange={(ev) => setActivityName(ev.target.value)}
         >
-          {listActivity}
+          {activities.map((activity, id) => (
+            <option
+              key={`activityList${id}`}
+              value={activity.name}
+              id={activity.id}
+            >
+              {activity.name},id:{activity.id}
+            </option>
+          ))}
         </select>
         <label htmlFor="count">Count:</label>
         <input
@@ -52,7 +61,7 @@ function AddActivitiesToRoutines({ userRoutine }) {
           name="count"
           placeholder="count"
           value={activityCount}
-          onChange={(e) => setActivityCount(e.target.value)}
+          onChange={(ev) => setActivityCount(ev.target.value)}
           min="0"
           max="100"
         />
@@ -61,14 +70,20 @@ function AddActivitiesToRoutines({ userRoutine }) {
           type="number"
           placeholder="duration"
           value={activityDuration}
-          onChange={(e) => setActivityDuration(e.target.value)}
+          onChange={(ev) => setActivityDuration(ev.target.value)}
           min="0"
           max="60"
         />
-        <button>Add Activity</button>
+        <button
+          type="submit"
+          onClick={() => {
+            console.log("activity id:", listActivity.props);
+          }}
+        >
+          Add Activity
+        </button>
       </form>
     </div>
   );
 }
-
 export default AddActivitiesToRoutines;
