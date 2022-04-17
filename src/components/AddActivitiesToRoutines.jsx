@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import {
   attachActivityToRoutine,
@@ -15,59 +15,39 @@ function AddActivitiesToRoutines({
   routineId,
 }) {
   const { user, activities, token } = useAuth();
-  //console.log("activities:", activities);
-  console.log("userRoutine:", userRoutine);
   const [activityCount, setActivityCount] = useState(0);
   const [activityDuration, setActivityDuration] = useState(0);
   const [selectActivity, setSelectActivity] = useState(0);
-  const [listedActivities, setListedActivities] = useState(0);
-
-  //console.log("listActivity:", activity.id);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    console.log("userRoutine id:", userRoutine.id);
+
     const activityObj = {
       activityId: selectActivity,
       count: activityCount,
       duration: activityDuration,
     };
-    console.log("userRoutines:", userRoutines);
+
     const response = await attachActivityToRoutine(
       activityObj,
       routineId,
       token
     );
-    console.log("response:", response);
 
     const result = await getPublicRoutinesByUser(user.username, token);
-    console.log("result ", result);
-    //setUserRoutines(response);
+
     const newArray = result;
-    console.log("newArray:", newArray);
+
     setUserRoutines(newArray);
-    console.log("newArray after setUserRoutines:", newArray);
-    console.log("userRoutines activities:", await userRoutines);
   };
   const listActivity = activities.map((activity, id) => (
     <option key={`activityList${id}`} value={activity.id} id={activity.id}>
       {activity.name}
-      {activity.id}
     </option>
   ));
-  // setListedActivities(listActivity);
-  // useEffect(
-  //   (listActivity) => {
-  //     const list = () => {
-  //       return listedActivities;
-  //     };
-  //     list();
-  //   },
-  //   [userRoutines]
-  // );
+
   const handleSelect = (e) => {
     setSelectActivity(parseInt(e.target.value));
-    console.log("selectActivity:", typeof selectActivity, selectActivity);
   };
   return (
     <div className="activitiesList">

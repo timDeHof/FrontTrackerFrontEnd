@@ -12,7 +12,6 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
 
   const handleSubmit = async (e, routineId) => {
     e.preventDefault();
-    //console.log("Submitted");
     const routine = {};
     if (newRoutineName !== "") {
       routine.name = newRoutineName;
@@ -37,9 +36,7 @@ const SingleRoutine = ({ userRoutine, userRoutines, setUserRoutines, id }) => {
   };
 
   const handleDelete = async (id) => {
-    //console.log("userRoutine id:", id);
     const data = await deleteRoutine(token, id);
-    //console.log("deleted data:", data);
     const filteredRoutines = userRoutines.filter(
       (routine) => routine.id !== id
     );
